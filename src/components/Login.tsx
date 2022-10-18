@@ -16,26 +16,35 @@ const Login = () => {
 
     const handleLogin = async (): Promise<void> => {
         try {
-            const response = await fetch("/api/login", {
-                method: "POST",
-                body: JSON.stringify({
-                    password: password,
-                    user: username
-                }),
-                headers: { "Content-Type": "application/json" }
+            const url =
+                "/authentication?login=" +
+                encodeURIComponent(username) +
+                "&password=" +
+                encodeURIComponent(password);
+            const response = await fetch(url, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json"
+                }
             });
-            await response.json();
+            const text = await response.text();
+            console.log(response.status);
+            if (response.status > 400) {
+                if (response.status === 401) {
+                    setErrMsg("Unauthorized");
+                    return;
+                }
+                if (text) {
+                    setErrMsg(text);
+                    return;
+                }
+                setErrMsg("Login Failed");
+                return;
+            }
             history.replace("/");
         } catch (err) {
-            if (!err?.response) {
-                setErrMsg("No Server Response");
-            } else if (err.response?.status === 400) {
-                setErrMsg("Missing Username or Password");
-            } else if (err.response?.status === 401) {
-                setErrMsg("Unauthorized");
-            } else {
-                setErrMsg("Login Failed");
-            }
+            setErrMsg("Login Failed");
             if (userRef.current) userRef.current.focus();
         }
     };

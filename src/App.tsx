@@ -24,8 +24,8 @@ const App: React.FC = () => {
                             <LinkContainer to="/login">
                                 <Nav.Link>Login</Nav.Link>
                             </LinkContainer>
-                            <LinkContainer to="/test">
-                                <Nav.Link>Siret</Nav.Link>
+                            <LinkContainer to="/advertising">
+                                <Nav.Link>Advertising</Nav.Link>
                             </LinkContainer>
                         </Nav>
                     </Navbar.Collapse>

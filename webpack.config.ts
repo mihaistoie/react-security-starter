@@ -33,8 +33,11 @@ const webpackConfig = (env): Configuration => ({
         compress: true,
         port: 9000,
         proxy: {
-            "/api": {
-                target: "http://localhost:3000"
+            "/authentication": {
+                target: "http://localhost:5000"
+            },
+            "/pub": {
+                target: "http://localhost:5001"
             }
         }
     },

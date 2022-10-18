@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./Home";
 import Login from "./Login";
-import Test from "./Test";
+import Advertising from "./Advertising";
 
 const Loading = () => <p>Loading ...</p>;
 
@@ -12,7 +12,7 @@ const Main = () => {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/test" element={<Test />} />
+                <Route path="/advertising" element={<Advertising />} />
             </Routes>
         </React.Suspense>
     );
