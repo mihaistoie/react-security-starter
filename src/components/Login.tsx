@@ -1,8 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Alert, Button, Col, Container, Form, Row } from "react-bootstrap";
 import history from "../context/history";
+import AuthContextProvider from "../context/AuthContextProvider";
 
 const Login = () => {
+    const { setAuth } = useContext(AuthContextProvider);
     const userRef = useRef<HTMLInputElement>();
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
@@ -29,7 +31,6 @@ const Login = () => {
                 }
             });
             const text = await response.text();
-            console.log(response.status);
             if (response.status > 400) {
                 if (response.status === 401) {
                     setErrMsg("Unauthorized");
@@ -42,6 +43,7 @@ const Login = () => {
                 setErrMsg("Login Failed");
                 return;
             }
+            setAuth({ user: username, isAuthenticated: true });
             history.replace("/");
         } catch (err) {
             setErrMsg("Login Failed");

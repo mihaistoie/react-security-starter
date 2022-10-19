@@ -38,6 +38,9 @@ const webpackConfig = (env): Configuration => ({
             },
             "/pub": {
                 target: "http://localhost:5001"
+            },
+            "/persons": {
+                target: "http://localhost:5000"
             }
         }
     },

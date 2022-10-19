@@ -1,5 +1,4 @@
 export interface AuthContextInterface {
+    isAuthenticated: boolean;
     user?: string;
-    pwd?: string;
-    title?: string;
 }

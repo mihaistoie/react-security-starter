@@ -1,17 +1,17 @@
 import React from "react";
 import { useState } from "react";
-import { AuthContextInterface } from "src/context/AuthContext";
+import { AuthContextInterface } from "./AuthContext";
 
 const AuthContextProvider = React.createContext<{
-    auth?: AuthContextInterface;
+    auth: AuthContextInterface;
     setAuth?: React.Dispatch<React.SetStateAction<AuthContextInterface>>;
 }>({
-    auth: {},
+    auth: { isAuthenticated: false },
     setAuth: null
 });
 
 export const AuthProvider = ({ children }) => {
-    const [auth, setAuth] = useState<AuthContextInterface>({});
+    const [auth, setAuth] = useState<AuthContextInterface>({ isAuthenticated: false });
 
     return (
         <AuthContextProvider.Provider value={{ auth, setAuth }}>
